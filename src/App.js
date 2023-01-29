@@ -89,7 +89,7 @@ function App() {
         )
       }
       <div className='empty-text'>
-      {toDo && toDo.length ? '' : 'Empty no Taskes are added'}
+      {toDo && toDo.length ? '' : 'Add New Taskes In The Input Field'}
       </div> {toDo && toDo
         .sort((a,b)=>a.id > b.id ? 1 : -1 )
         .map((task, index) =>{

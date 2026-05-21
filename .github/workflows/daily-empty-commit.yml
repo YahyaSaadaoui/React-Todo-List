@@ -1,4 +1,4 @@
-name: DAILY COMMIT
+name: DAILY BUG FIX COMMIT
 
 on:
   schedule:
@@ -9,16 +9,16 @@ permissions:
   contents: write
 
 jobs:
-  empty-commit:
+  bug-fix-commit:
     runs-on: ubuntu-latest
 
     steps:
       - name: Check out repository
         uses: actions/checkout@v4
 
-      - name: Create empty commit
+      - name: Create daily bug fix commit
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git commit --allow-empty -m "chore: daily empty commit"
+          git commit --allow-empty -m "fix: daily bug fix"
           git push

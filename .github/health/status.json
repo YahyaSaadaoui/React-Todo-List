@@ -1,6 +1,0 @@
-{
-  "checked": true,
-  "healthy": false,
-  "missing": ["gitignore"],
-  "note": "Updated automatically only when repository health state changes."
-}

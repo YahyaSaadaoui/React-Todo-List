@@ -6,32 +6,8 @@ on:
   workflow_dispatch:
 
 permissions:
-  contents: read
+  contents: write
 
 jobs:
   health:
-    name: Repository health summary
-    runs-on: ubuntu-latest
-    steps:
-      - name: Check out repository
-        uses: actions/checkout@v4
-      - name: Build health summary
-        shell: bash
-        run: |
-          set -euo pipefail
-          tracked_files=$(git ls-files | wc -l | tr -d ' ')
-          latest_commit=$(git log -1 --format='%h %s')
-          echo "## Repository health check" >> "$GITHUB_STEP_SUMMARY"
-          echo "- Repository: ${GITHUB_REPOSITORY}" >> "$GITHUB_STEP_SUMMARY"
-          echo "- Branch: ${GITHUB_REF_NAME}" >> "$GITHUB_STEP_SUMMARY"
-          echo "- Tracked files: ${tracked_files}" >> "$GITHUB_STEP_SUMMARY"
-          echo "- Latest commit: ${latest_commit}" >> "$GITHUB_STEP_SUMMARY"
-          echo "" >> "$GITHUB_STEP_SUMMARY"
-          echo "### Project basics" >> "$GITHUB_STEP_SUMMARY"
-          for item in README LICENSE .gitignore package.json requirements.txt pyproject.toml; do
-            if find . -maxdepth 2 -iname "${item}*" -print -quit | grep -q .; then
-              echo "- ${item}: found" >> "$GITHUB_STEP_SUMMARY"
-            else
-              echo "- ${item}: missing" >> "$GITHUB_STEP_SUMMARY"
-            fi
-          done
+    uses: YahyaSaadaoui/YahyaSaadaoui/.github/workflows/reusable-repository-health.yml@main
